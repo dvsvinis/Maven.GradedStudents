@@ -61,9 +61,12 @@ public class Student {
         return sum / examScores.size();
     }
 
-
+    @Override
+    public String toString() {
+        return "Student Name: " + firstName + " " + lastName + "\n" +
+        "Average Score: " +  getAverageExamScore() + "\n" +
+        "Exam Scores: " + "\n" +
+                getExamScores();
+    }
 
 }
-
-
-
