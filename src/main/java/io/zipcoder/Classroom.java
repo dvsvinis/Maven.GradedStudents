@@ -53,13 +53,13 @@ public class Classroom {
 
 
     public Student[] getStudentsByScore(){
-
          List<Student> sortedByScore = new ArrayList<Student>(Arrays.asList(students));
         int classSize = students.length;
          Collections.sort(sortedByScore);
 
         return students = sortedByScore.toArray(new Student[classSize]);
     }
+
 
     @Override
     public String toString() {
