@@ -66,7 +66,7 @@ public class Student implements Comparable<Student> {
         return "Student Name: " + firstName + " " + lastName + "\n" +
         "Average Score: " +  getAverageExamScore() + "\n" +
         "Exam Scores: " + "\n" +
-                getExamScores();
+                getExamScores() + "\n";
     }
 
     @Override

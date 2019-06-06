@@ -51,15 +51,6 @@ public class Classroom {
         students = arrayList.toArray(new Student[classSize]);
     }
 
-//    public void whenComparing_thenSortedByScore() {
-//        Comparator<Student> studentByScoreComparator
-//                = Comparator.comparing(Student::getAverageExamScore);
-//
-//        Arrays.sort(students, studentByScoreComparator);
-//
-// //      assertTrue(Arrays.equals(students, studentByScoreComparator));
-//    }
-
 
     public Student[] getStudentsByScore(){
 
@@ -72,9 +63,31 @@ public class Classroom {
 
     @Override
     public String toString() {
-        return "Classroom{" +
-                "students=" + Arrays.toString(students) +
-                '}';
+  //      return "Classroom: \n" + Arrays.toString(students);
+    StringBuilder output = new StringBuilder();
+        for (Student each : students) {
+          output.append(each.toString());
+        }
+        return output.toString();
+    }
+
+    public void getGradeBook(Student student){
+        List<Student> sortedByScore = new ArrayList<Student>(Arrays.asList(students));
+        Double highest = (students[0].getAverageExamScore());
+   //     System.out.println("The highest average is " + highest);
+
+        if (student.getAverageExamScore() >= highest - (highest * .10)) {
+            System.out.println(student.getFirstName() + " " + student.getLastName() + " Grade is A");
+        } else if (student.getAverageExamScore() > highest - (highest * .30) && student.getAverageExamScore() < (highest - (highest * .10))) {
+            System.out.println(student.getFirstName() + " " + student.getLastName() + " Grade is B");
+        } else if (student.getAverageExamScore() > highest - (highest * .50) && student.getAverageExamScore() < (highest - (highest * .30))) {
+            System.out.println(student.getFirstName() + " " + student.getLastName() + " Grade is C");
+        } else if (student.getAverageExamScore() > highest - (highest * .89) && student.getAverageExamScore() < (highest - (highest * .50))) {
+            System.out.println(student.getFirstName() + " " + student.getLastName() + " Grade is D");
+        } else {
+            System.out.println(student.getFirstName() + " " + student.getLastName() + " Grade is F");
+        }
+
     }
 
 }
