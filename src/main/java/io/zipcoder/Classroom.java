@@ -2,6 +2,7 @@ package io.zipcoder;
 
 import java.util.*;
 import java.util.Collections;
+import org.junit.Assert;
 
 public class Classroom {
     private Student[] students;
@@ -19,7 +20,7 @@ public class Classroom {
     }
 
     public Student[] getStudents() {
-        return students;
+         return students;
     }
 
     public Double getAverageExamScore(){
@@ -30,13 +31,14 @@ public class Classroom {
     }
 
     public void addStudent(Student student){
-        for (int i = 0; i < students.length; i++){
-            if (students[i] == null) {
-                students[i] = student;
-                break;
-            }
-        }
+        List<Student> newList = new ArrayList<Student>(Arrays.asList(students));
+        int classSize = students.length;
+        newList.add(student);
+        students = newList.toArray(new Student[classSize]);
+   //     for(Student each : students){
+   //         System.out.println(each.toString());
     }
+
 
     public void removeStudent(String firstName, String lastName){
         List<Student> arrayList = new ArrayList<Student>(Arrays.asList(students));
@@ -49,19 +51,31 @@ public class Classroom {
         students = arrayList.toArray(new Student[classSize]);
     }
 
+//    public void whenComparing_thenSortedByScore() {
+//        Comparator<Student> studentByScoreComparator
+//                = Comparator.comparing(Student::getAverageExamScore);
+//
+//        Arrays.sort(students, studentByScoreComparator);
+//
+// //      assertTrue(Arrays.equals(students, studentByScoreComparator));
+//    }
+
+
     public Student[] getStudentsByScore(){
 
-        List<Student> sortedByScore = new ArrayList<Student>(Arrays.asList(students));
-        Collections.sort(sortedByScore, new Comparator<Student>() {
-            public int compare(Student s1, Student s2) {
-                return Double.valueOf(s1.getAverageExamScore()).compareTo(s2.getAverageExamScore());
-            }
-        });
+         List<Student> sortedByScore = new ArrayList<Student>(Arrays.asList(students));
+        int classSize = students.length;
+         Collections.sort(sortedByScore);
 
-        Student[] output = new Student[sortedByScore.size()];
-        return sortedByScore.toArray(output);
+        return students = sortedByScore.toArray(new Student[classSize]);
     }
 
+    @Override
+    public String toString() {
+        return "Classroom{" +
+                "students=" + Arrays.toString(students) +
+                '}';
+    }
 
 }
 
